@@ -28,6 +28,14 @@ def underscore_reducer(k1, k2):
         return "{}_{}".format(k1, k2)
 
 
+def double_colon_reducer(k1, k2):
+    if k1 is None:
+        return k2
+    else:
+        return "{}::{}".format(k1, k2)
+
+
+
 def make_reducer(delimiter):
     """Create a reducer with a custom delimiter.
 

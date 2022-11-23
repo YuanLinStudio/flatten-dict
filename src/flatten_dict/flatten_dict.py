@@ -7,8 +7,8 @@ except ImportError:
 
 import six
 
-from .reducers import tuple_reducer, path_reducer, dot_reducer, underscore_reducer
-from .splitters import tuple_splitter, path_splitter, dot_splitter, underscore_splitter
+from .reducers import tuple_reducer, path_reducer, dot_reducer, underscore_reducer, double_colon_reducer
+from .splitters import tuple_splitter, path_splitter, dot_splitter, underscore_splitter, double_colon_splitter
 
 
 REDUCER_DICT = {
@@ -16,6 +16,7 @@ REDUCER_DICT = {
     "path": path_reducer,
     "dot": dot_reducer,
     "underscore": underscore_reducer,
+    "double-colon": double_colon_reducer,
 }
 
 SPLITTER_DICT = {
@@ -23,6 +24,7 @@ SPLITTER_DICT = {
     "path": path_splitter,
     "dot": dot_splitter,
     "underscore": underscore_splitter,
+    "double-colon": double_colon_splitter,
 }
 
 
