@@ -126,7 +126,7 @@ def flatten(
 
 
 def nested_set_dict(d, keys, value):
-    """Set a value to a sequence of nested keys.
+    """Set a value to a sequence of nested keys
 
     Parameters
     ----------
@@ -137,11 +137,27 @@ def nested_set_dict(d, keys, value):
     assert keys
     key = keys[0]
     if len(keys) == 1:
-        if key in d:
-            raise ValueError("duplicated key '{}'".format(key))
-        d[key] = value
+        if type(d) == list:
+            d.append(value)
+        else:
+            d[key] = value
         return
-    d = d.setdefault(key, {})
+
+    # Credit: https://github.com/ianlini/flatten-dict/issues/8
+    # the type is a string so make a dict if none exists
+    # if type(keys[1]) == int:
+    if f"{keys[1]}".isdigit():
+        if key in d:
+            pass
+        else:
+            d[key] = []
+        d = d[key]
+    elif type(key) == int:
+        if (key + 1) > len(d):
+            d.append({})
+        d = d[key]
+    else:
+        d = d.setdefault(key, {})
     nested_set_dict(d, keys[1:], value)
 
 
